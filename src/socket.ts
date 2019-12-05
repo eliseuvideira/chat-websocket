@@ -41,20 +41,21 @@ class WebSocketServer {
           username,
           datetime: new Date(),
         });
-        socket.emit('messages', this._messages);
+        this.socketServer.emit('messages', this._messages);
       });
       socket.on('create-user', (username: string) => {
         this._users.set(socket, { username, datetime: new Date() });
-        socket.emit('users', [...this._users.values()]);
+        this.socketServer.emit('users', [...this._users.values()]);
       });
       socket.on('get-messages', () => {
-        socket.emit('messages', this._messages);
+        this.socketServer.emit('messages', this._messages);
       });
       socket.on('get-users', () => {
-        socket.emit('users', [...this._users.values()]);
+        this.socketServer.emit('users', [...this._users.values()]);
       });
       socket.on('disconnect', () => {
         this._users.delete(socket);
+        this.socketServer.emit('users', [...this._users.values()]);
       });
     });
   }
