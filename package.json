@@ -20,7 +20,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "dev": "concurrently -n tsc,js \"yarn watch\" \"yarn start\"",
+    "dev": "concurrently -n tsc,js -i \"yarn watch\" \"yarn start\"",
     "lint": "tslint 'src/**/*.ts'",
     "start": "nodemon dist/server.js",
     "watch": "tsc --watch"
